@@ -71,7 +71,7 @@ class LaunchViewController: BaseViewController {
     }
     
     static func showHomePage() {
-        let homePage = GameViewController.instance()
+        let homePage = UINavigationController(rootViewController: HomeViewController())
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window?.rootViewController = homePage
         }

@@ -9,6 +9,7 @@ target 'SportsSearch' do
   # Pods for SportsSearch
   pod 'RxSwift', '4.5.0'
   pod 'RxCocoa', '4.5.0'
+  pod 'ReactorKit'
   
   # Network
   pod 'Moya/RxSwift', '13.0.1'
@@ -20,6 +21,7 @@ target 'SportsSearch' do
 
   # UI
   pod "SHSearchBar"
+  pod 'SnapKit', '~> 5.0.0'
   
   # Push
   pod 'JPush', '3.1.0'

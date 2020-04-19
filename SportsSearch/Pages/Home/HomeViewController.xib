@@ -30,9 +30,14 @@
                     <state key="normal" title="Search It">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="27"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PPM-TQ-Ge7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8Qh-Sf-JVI"/>
                 <constraint firstItem="TtX-q9-TKM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Iyb-Ss-LHF"/>
@@ -43,7 +48,7 @@
                 <constraint firstAttribute="bottom" secondItem="PPM-TQ-Ge7" secondAttribute="bottom" id="yoz-MJ-IQB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="142"/>
+            <point key="canvasLocation" x="137.68115942028987" y="141.96428571428569"/>
         </view>
     </objects>
 </document>

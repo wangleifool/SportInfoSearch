@@ -11,6 +11,9 @@ import Moya
 
 enum APITarget {
     case appVersion
+    case player(searchText: String)
+    case team(searchText: String)
+//    case event(searchText: String)
 }
 
 extension APITarget: TargetType {
@@ -19,6 +22,8 @@ extension APITarget: TargetType {
         switch self {
         case .appVersion:
             urlString = "https://materCup.github.io"
+        case .player, .team:
+            urlString = "https://www.thesportsdb.com"
         }
         
         guard let url = URL(string: urlString) else {
@@ -31,6 +36,10 @@ extension APITarget: TargetType {
         switch self {
         case .appVersion:
             return "/appVersion.json"
+        case .player:
+            return "/api/v1/json/1/searchplayers.php"
+        case .team:
+            return "/api/v1/json/1/searchteams.php"
         }
     }
 
@@ -48,6 +57,10 @@ extension APITarget: TargetType {
         switch self {
         case .appVersion:
             parameters["id"] = "TestJump"
+        case .player(let searchText):
+            parameters["p"] = searchText
+        case .team(let searchText):
+            parameters["t"] = searchText
         }
         
         return Task.requestParameters(parameters: parameters,
