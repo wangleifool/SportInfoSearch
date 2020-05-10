@@ -22,6 +22,9 @@ target 'SportsSearch' do
   # UI
   pod "SHSearchBar"
   pod 'SnapKit', '~> 5.0.0'
+  pod 'NVActivityIndicatorView'
+  pod 'FloatingPanel'
+  pod 'FSPagerView'
   
   # Push
   pod 'JPush', '3.1.0'

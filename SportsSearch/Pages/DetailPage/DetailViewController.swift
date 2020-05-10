@@ -13,13 +13,15 @@ class DetailViewController: BaseViewController {
 
     @IBOutlet weak var bgImgView: UIImageView! {
         didSet {
-            let blurEffect = U
+            let blurEffect = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+            blurEffect.frame = UIScreen.main.bounds
+            bgImgView.addSubview(blurEffect)
         }
     }
     
-    private var result: TeamResult?
+    private var result: Team?
     
-    static func instance(result: TeamResult) -> DetailViewController {
+    static func instance(result: Team) -> DetailViewController {
         let vc = DetailViewController()
         vc.result = result
         return vc
@@ -28,7 +30,7 @@ class DetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let bgResource = result?.teams?.first?.strTeamFanart1 ?? ""
+        let bgResource = result?.strTeamFanart1 ?? ""
         let placeHolder = #imageLiteral(resourceName: "nodata")
         bgImgView.kf.setImage(with: URL(string: bgResource),
                               placeholder: placeHolder,

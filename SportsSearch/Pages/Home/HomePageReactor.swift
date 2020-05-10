@@ -10,13 +10,19 @@ import Foundation
 import RxSwift
 import ReactorKit
 
+enum SearchType {
+    case team
+    case player
+}
+
 final class HomePageReactor: Reactor {
     enum Action {
-        case search(String)
+        case search(String, type: SearchType)
     }
     
     enum Mutation {
-        case setSearchResult(result: TeamResult?)
+        case setSearchTeamResult(result: TeamResult?)
+        case setSearchPlayerResult(result: PlayerResult?)
         case setLoading(Bool)
         case reset
         case empty
@@ -24,7 +30,8 @@ final class HomePageReactor: Reactor {
     
     struct State {
         var loading: Bool = false
-        var result: TeamResult?
+        var teamResult: TeamResult?
+        var playerResult: PlayerResult?
     }
     
     let initialState: HomePageReactor.State
@@ -37,19 +44,31 @@ final class HomePageReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .search(let text):
-            return api.searchTeam(text)
+        case .search(let text, let type):
+            let loading = Observable.just(Mutation.setLoading(true))
+            let loadingDone = Observable.just(Mutation.setLoading(false))
+            let reset = Observable.just(Mutation.reset)
+            let searchTeamResult = api.searchTeam(text)
                 .asObservable()
-                .filter { $0 != nil }
-                .map { Mutation.setSearchResult(result: $0) }
+                .map { Mutation.setSearchTeamResult(result: $0) }
+            let searchPlayer = api.searchPlayer(text)
+                .asObservable()
+                .map { Mutation.setSearchPlayerResult(result: $0) }
+            
+            return Observable.from([loading,
+                                    type == .player ? searchPlayer : searchTeamResult,
+                                    loadingDone,
+                                    reset]).concat()
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .setSearchResult(let result):
-            state.result = result
+        case .setSearchTeamResult(let result):
+            state.teamResult = result
+        case .setSearchPlayerResult(let result):
+            state.playerResult = result
         case .setLoading(let loading):
             state.loading = loading
         case .reset:

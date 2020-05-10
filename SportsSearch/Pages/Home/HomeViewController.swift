@@ -10,6 +10,7 @@ import UIKit
 import SHSearchBar
 import RxSwift
 import ReactorKit
+import NVActivityIndicatorView
 
 class HomeViewController: BaseViewController {
     
@@ -17,6 +18,17 @@ class HomeViewController: BaseViewController {
     
     var searchBar: SHSearchBar!
 
+    lazy var loadingView: NVActivityIndicatorView = {
+        var frame = CGRect(origin: .zero, size: CGSize(width: 54, height: 54))
+        frame.origin = CGPoint(x: UIScreen.main.bounds.width / 2 - 27, y: UIScreen.main.bounds.height / 2 - 27)
+        let loading = NVActivityIndicatorView(frame: frame,
+                                              type: .ballSpinFadeLoader,
+                                              color: .black,
+                                              padding: 0)
+        self.view.addSubview(loading)
+        return loading
+    }()
+    
     private var apiService = APIService()
     
     override func viewDidLoad() {
@@ -63,7 +75,8 @@ extension HomeViewController: SHSearchBarDelegate {
         guard let text = searchBar.text,
             !text.isEmpty else { return false }
         
-        reactor?.action.onNext(.search(text))
+        reactor?.action.onNext(.search(text, type: .player))
+        searchBar.resignFirstResponder()
         
         return true
     }
@@ -75,19 +88,45 @@ extension HomeViewController: ReactorKit.View {
     func bind(reactor: Reactor) {
         
         reactor.state
-            .map { $0.result }
-            .filter { ($0?.teams?.count ?? 0) != 0 }
+            .map { $0.teamResult?.teams?.first }
+            .distinctUntilChanged({ (leftTeam, rightTeam) -> Bool in
+                return leftTeam?.idTeam == rightTeam?.idTeam
+            })
+            .filter { $0 != nil }
             .subscribe(onNext: { [weak self] (result) in
-                print("I got search result \(result?.teams?.first?.idTeam)")
-                self?.gotoSearchResultPage(result: result!)
+                self?.gotoSearchTeamResultPage(result: result!)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.playerResult?.player?.first }
+            .distinctUntilChanged { (leftPlayer, rightPlayer) -> Bool in
+                return leftPlayer?.idPlayer == rightPlayer?.idPlayer
+            }
+            .filter { $0 != nil }
+            .subscribe(onNext: { [weak self] (player) in
+                self?.gotoSearchPlayerResultPage(with: player!)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.loading }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] (loading) in
+                loading ? self?.loadingView.startAnimating() : self?.loadingView.stopAnimating()
             })
             .disposed(by: disposeBag)
             
     }
     
-    func gotoSearchResultPage(result: TeamResult) {
+    func gotoSearchTeamResultPage(result: Team) {
         let detailPage = DetailViewController.instance(result: result)
         navigationController?.pushViewController(detailPage, animated: true)
+    }
+    
+    func gotoSearchPlayerResultPage(with player: Player) {
+        let playerPage = PlayerDetailViewController.instance(player: player)
+        navigationController?.pushViewController(playerPage, animated: true)
     }
 }
 
