@@ -13,7 +13,9 @@ struct Const {
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
     
-    static let statusBarHeight: CGFloat = UIDevice.isIPhoneX ? 44 : 20
+    static let navigationBarHeight: CGFloat = 44.0
+    static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    static let navBarAndStatusBarHeight: CGFloat = navigationBarHeight + statusBarHeight
     
     static let appID = "1505075520"
     

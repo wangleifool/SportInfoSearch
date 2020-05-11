@@ -39,8 +39,9 @@ extension PlayerPhotoCollectionTableViewCell: FSPagerViewDataSource {
         
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.contentView.backgroundColor = UIColor(hex: 0xE2EAF7)
-        cell.imageView?.contentMode = .scaleAspectFit
+        cell.SCCornerRadius = 4
+        cell.imageView?.contentMode = .scaleAspectFill
+        cell.imageView?.clipsToBounds = true
         cell.imageView?.kf.setImage(with: URL(string: photoUrls[index]))
         return cell
     }

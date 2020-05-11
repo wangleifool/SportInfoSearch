@@ -10,6 +10,7 @@ import Foundation
 
 enum PlayerDetailSectionModel {
     case breifInfo(player: Player)
-    case desc
-
+    case social
+    case photos([String])
+    case desc(text: String, isFull: Bool)
 }

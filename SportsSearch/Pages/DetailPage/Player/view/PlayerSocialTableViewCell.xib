@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerSocialTableViewCell" rowHeight="60" id="KGk-i7-Jjw" customClass="PlayerSocialTableViewCell" customModule="SportsSearch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="FY2-kX-LpW">
+                        <rect key="frame" x="16" y="8" width="288" height="44"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="252-ma-zbg">
+                                <rect key="frame" x="0.0" y="0.0" width="63.5" height="44"/>
+                                <state key="normal" image="facebook"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qA4-dM-QjA">
+                                <rect key="frame" x="112.5" y="0.0" width="63" height="44"/>
+                                <state key="normal" image="twitter"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLw-M9-VhM">
+                                <rect key="frame" x="224.5" y="0.0" width="63.5" height="44"/>
+                                <state key="normal" image="instagram"/>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FY2-kX-LpW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0EO-Wn-u66"/>
+                    <constraint firstAttribute="trailing" secondItem="FY2-kX-LpW" secondAttribute="trailing" constant="16" id="Bsk-wT-eQo"/>
+                    <constraint firstAttribute="bottom" secondItem="FY2-kX-LpW" secondAttribute="bottom" constant="8" id="XbR-2q-Ghy"/>
+                    <constraint firstItem="FY2-kX-LpW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="isR-QP-wuk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="facebookBtn" destination="252-ma-zbg" id="3xd-Yz-mB5"/>
+                <outlet property="instagramBtn" destination="fLw-M9-VhM" id="xtI-rK-pLo"/>
+                <outlet property="twitterBtn" destination="qA4-dM-QjA" id="bd5-QQ-q2Q"/>
+            </connections>
+            <point key="canvasLocation" x="102.89855072463769" y="135.26785714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="facebook" width="32" height="32"/>
+        <image name="instagram" width="32" height="32"/>
+        <image name="twitter" width="32" height="32"/>
+    </resources>
+</document>

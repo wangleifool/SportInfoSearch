@@ -30,7 +30,7 @@ class PlayerBreifInfoTableViewCell: BaseTableViewCell {
         // Initialization code
     }
     
-    func updateCell(_ player: Player) {
+    func updateCell(_ player: Player, isStarred: Bool = false) {
         if let thumb = player.strThumb,
             let thumbUrl = URL(string: thumb) {
             avatarImgView.isHidden = false
@@ -48,6 +48,8 @@ class PlayerBreifInfoTableViewCell: BaseTableViewCell {
         countryLbl.isHidden = countryLbl.text == nil
         sportsTypeLbl.text = player.strSport
         sportsTypeLbl.isHidden = sportsTypeLbl.text == nil
+        
+        starBtn.setImage(isStarred ? #imageLiteral(resourceName: "starFill") : #imageLiteral(resourceName: "starEmpty"), for: .normal)
     }
     
 }

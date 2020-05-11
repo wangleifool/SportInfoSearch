@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerDetailViewController" customModule="SportsSearch" customModuleProvider="target">
             <connections>
-                <outlet property="bgImgView" destination="Ymz-2J-dxL" id="8Wc-Zp-ou4"/>
+                <outlet property="navBarView" destination="fE7-0R-MAb" id="AR3-VE-5EJ"/>
                 <outlet property="tableView" destination="BK1-cI-jFu" id="L5B-rC-lxr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,22 +20,35 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-2J-dxL">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Ymz-2J-dxL" secondAttribute="height" multiplier="16:9" id="ulD-V0-pYB"/>
-                    </constraints>
-                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BK1-cI-jFu">
-                    <rect key="frame" x="0.0" y="108" width="414" height="788"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF1-HY-aO3">
-                    <rect key="frame" x="0.0" y="44" width="64" height="64"/>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fE7-0R-MAb">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFu-kw-gXS">
+                            <rect key="frame" x="167" y="44" width="80.5" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="YZA-Mx-udd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="64" id="Dwn-8F-xSy"/>
-                        <constraint firstAttribute="height" constant="64" id="PNe-mQ-Pws"/>
+                        <constraint firstAttribute="bottom" secondItem="zFu-kw-gXS" secondAttribute="bottom" id="36q-XS-qRs"/>
+                        <constraint firstItem="zFu-kw-gXS" firstAttribute="centerX" secondItem="fE7-0R-MAb" secondAttribute="centerX" id="cE3-6U-qG4"/>
                     </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF1-HY-aO3">
+                    <rect key="frame" x="0.0" y="44" width="64" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="9ni-Vh-DWG"/>
+                        <constraint firstAttribute="width" constant="64" id="O8t-FA-P44"/>
+                    </constraints>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="back"/>
                     <connections>
                         <action selector="backTapped" destination="-1" eventType="touchUpInside" id="hUp-I0-egi"/>
@@ -44,15 +57,16 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Ymz-2J-dxL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9g8-Bo-uaE"/>
+                <constraint firstItem="BK1-cI-jFu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5M8-Cu-vfC"/>
                 <constraint firstItem="BK1-cI-jFu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ADg-Nh-ENb"/>
+                <constraint firstItem="fE7-0R-MAb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="AEs-NL-1tz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="fE7-0R-MAb" secondAttribute="bottom" constant="-44" id="Bde-yQ-KZF"/>
                 <constraint firstAttribute="trailing" secondItem="BK1-cI-jFu" secondAttribute="trailing" id="EWm-Lu-oOd"/>
-                <constraint firstItem="QF1-HY-aO3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="a1j-vq-rBt"/>
-                <constraint firstItem="BK1-cI-jFu" firstAttribute="top" secondItem="QF1-HY-aO3" secondAttribute="bottom" id="aj8-v4-OV1"/>
-                <constraint firstAttribute="trailing" secondItem="Ymz-2J-dxL" secondAttribute="trailing" id="chd-TD-Td5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fE7-0R-MAb" secondAttribute="trailing" id="Hac-sH-UYM"/>
+                <constraint firstItem="fE7-0R-MAb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zc3-mn-qZF"/>
+                <constraint firstItem="QF1-HY-aO3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="er2-Ur-YyE"/>
+                <constraint firstItem="QF1-HY-aO3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="igy-AO-njC"/>
                 <constraint firstAttribute="bottom" secondItem="BK1-cI-jFu" secondAttribute="bottom" id="ngw-n6-UW9"/>
-                <constraint firstItem="QF1-HY-aO3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ori-Ru-Q6o"/>
-                <constraint firstItem="Ymz-2J-dxL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z1i-M2-ozU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-346.37681159420293" y="29.464285714285712"/>

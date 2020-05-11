@@ -10,34 +10,45 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerPhotoCollectionTableViewCell" rowHeight="183" id="KGk-i7-Jjw" customClass="PlayerPhotoCollectionTableViewCell" customModule="SportsSearch" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="183"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerPhotoCollectionTableViewCell" rowHeight="255" id="KGk-i7-Jjw" customClass="PlayerPhotoCollectionTableViewCell" customModule="SportsSearch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="183"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRe-9M-jyc" customClass="FSPagerView" customModule="FSPagerView">
-                        <rect key="frame" x="0.0" y="8" width="320" height="167"/>
+                        <rect key="frame" x="16" y="42" width="288" height="213"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isInfinite" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="SCCornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1S-Vh-k0e">
+                        <rect key="frame" x="16" y="8" width="64" height="26"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 <constraints>
-                    <constraint firstItem="ZRe-9M-jyc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="MHK-q1-f8h"/>
-                    <constraint firstAttribute="bottom" secondItem="ZRe-9M-jyc" secondAttribute="bottom" constant="8" id="Ts8-12-DvD"/>
-                    <constraint firstItem="ZRe-9M-jyc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XC9-6S-dTa"/>
-                    <constraint firstAttribute="trailing" secondItem="ZRe-9M-jyc" secondAttribute="trailing" id="iV3-sn-yBM"/>
+                    <constraint firstItem="N1S-Vh-k0e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ICG-Ed-y8A"/>
+                    <constraint firstAttribute="bottom" secondItem="ZRe-9M-jyc" secondAttribute="bottom" id="Ts8-12-DvD"/>
+                    <constraint firstItem="ZRe-9M-jyc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XC9-6S-dTa"/>
+                    <constraint firstAttribute="trailing" secondItem="ZRe-9M-jyc" secondAttribute="trailing" constant="16" id="iV3-sn-yBM"/>
+                    <constraint firstItem="N1S-Vh-k0e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="m37-KR-Tzg"/>
+                    <constraint firstItem="ZRe-9M-jyc" firstAttribute="top" secondItem="N1S-Vh-k0e" secondAttribute="bottom" constant="8" id="uO9-Wf-1Fj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="pagerView" destination="ZRe-9M-jyc" id="UaI-17-Rfi"/>
             </connections>
-            <point key="canvasLocation" x="335" y="114"/>
+            <point key="canvasLocation" x="334.78260869565219" y="89.397321428571431"/>
         </tableViewCell>
     </objects>
 </document>

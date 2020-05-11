@@ -17,14 +17,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="369" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OverView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvf-du-J19">
-                        <rect key="frame" x="32" y="8" width="89" height="25.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="OverView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvf-du-J19">
+                        <rect key="frame" x="16" y="8" width="89" height="25.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IH-rL-xZH">
-                        <rect key="frame" x="32" y="41.5" width="305" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5IH-rL-xZH">
+                        <rect key="frame" x="16" y="41.5" width="321" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -32,11 +32,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="bvf-du-J19" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4Ip-RE-jc3"/>
-                    <constraint firstAttribute="bottom" secondItem="5IH-rL-xZH" secondAttribute="bottom" constant="8" id="Db6-Vj-0mA"/>
+                    <constraint firstAttribute="bottom" secondItem="5IH-rL-xZH" secondAttribute="bottom" id="Db6-Vj-0mA"/>
                     <constraint firstItem="5IH-rL-xZH" firstAttribute="top" secondItem="bvf-du-J19" secondAttribute="bottom" constant="8" id="F90-fL-mmZ"/>
-                    <constraint firstItem="5IH-rL-xZH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="LEH-tC-j9j"/>
+                    <constraint firstItem="5IH-rL-xZH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="LEH-tC-j9j"/>
                     <constraint firstAttribute="trailing" secondItem="5IH-rL-xZH" secondAttribute="trailing" constant="32" id="Vye-vC-efC"/>
-                    <constraint firstItem="bvf-du-J19" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="WWG-xT-q9z"/>
+                    <constraint firstItem="bvf-du-J19" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="WWG-xT-q9z"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -16,6 +16,7 @@ class HomeViewController: BaseViewController {
     
     var rasterSize: CGFloat = 11.0
     
+    @IBOutlet weak var searchBtn: UIButton!
     var searchBar: SHSearchBar!
 
     lazy var loadingView: NVActivityIndicatorView = {
@@ -36,6 +37,55 @@ class HomeViewController: BaseViewController {
 
         reactor = HomePageReactor()
         configSearchBar()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardComeOut), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDismiss), name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardComeOut(note: NSNotification) {
+        
+        guard let userInfo = note.userInfo,
+            let keyBoardBounds = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue,
+            let curve = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue else { return }
+        
+        let deltaY = keyBoardBounds.size.height
+        //5
+        let animations:(() -> Void) = {
+            self.searchBtn.transform = CGAffineTransform(translationX: 0, y: -deltaY)
+        }
+        
+        if duration > 0 {
+            let options = UIView.AnimationOptions(rawValue: UInt(curve) << 16)
+            UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+        } else {
+            animations()
+        }
+    }
+    
+    @objc private func keyboardDismiss(note: NSNotification) {
+        guard let userInfo = note.userInfo,
+            let duration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue,
+            let curve = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue else { return }
+
+        let animations:(() -> Void) = {
+            self.searchBtn.transform = CGAffineTransform.identity
+        }
+
+        if duration > 0 {
+            let options = UIView.AnimationOptions(rawValue: UInt(curve) << 16)
+            UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+        } else {
+            animations()
+        }
+              
+    }
+    
+    @IBAction func searchBtnTap(_ sender: Any) {
+        guard let text = searchBar.text,
+            !text.isEmpty else { return }
+        reactor?.action.onNext(.search(text, type: .player))
+        searchBar.resignFirstResponder()
     }
     
     private func configSearchBar() {
@@ -74,10 +124,6 @@ extension HomeViewController: SHSearchBarDelegate {
     func searchBarShouldReturn(_ searchBar: SHSearchBar) -> Bool {
         guard let text = searchBar.text,
             !text.isEmpty else { return false }
-        
-        reactor?.action.onNext(.search(text, type: .player))
-        searchBar.resignFirstResponder()
-        
         return true
     }
 }
