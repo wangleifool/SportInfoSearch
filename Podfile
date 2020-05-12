@@ -10,6 +10,7 @@ target 'SportsSearch' do
   pod 'RxSwift', '4.5.0'
   pod 'RxCocoa', '4.5.0'
   pod 'ReactorKit'
+  pod 'SQLite.swift', '~> 0.12.0'
   
   # Network
   pod 'Moya/RxSwift', '13.0.1'
@@ -23,8 +24,8 @@ target 'SportsSearch' do
   pod "SHSearchBar"
   pod 'SnapKit', '~> 5.0.0'
   pod 'NVActivityIndicatorView'
-  pod 'FloatingPanel'
   pod 'FSPagerView'
+  pod "SABlurImageView"
   
   # Push
   pod 'JPush', '3.1.0'

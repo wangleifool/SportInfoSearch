@@ -11,11 +11,17 @@ import SHSearchBar
 import RxSwift
 import ReactorKit
 import NVActivityIndicatorView
+import SABlurImageView
 
 class HomeViewController: BaseViewController {
     
     var rasterSize: CGFloat = 11.0
     
+    @IBOutlet weak var bgImgView: SABlurImageView! {
+        didSet {
+            self.bgImgView.configrationForBlurAnimation()
+        }
+    }
     @IBOutlet weak var searchBtn: UIButton!
     var searchBar: SHSearchBar!
 
@@ -58,6 +64,7 @@ class HomeViewController: BaseViewController {
         if duration > 0 {
             let options = UIView.AnimationOptions(rawValue: UInt(curve) << 16)
             UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+            self.bgImgView.blur(0.9)
         } else {
             animations()
         }
@@ -75,6 +82,7 @@ class HomeViewController: BaseViewController {
         if duration > 0 {
             let options = UIView.AnimationOptions(rawValue: UInt(curve) << 16)
             UIView.animate(withDuration: duration, delay: 0, options:options, animations: animations, completion: nil)
+            self.bgImgView.blur(0)
         } else {
             animations()
         }
@@ -96,7 +104,7 @@ class HomeViewController: BaseViewController {
                                       rightView: nil,
                                       delegate: self)
         searchBar.textAlignment = .center
-        searchBar.placeholder = "Search sports team or player..."
+        searchBar.placeholder = "Search player you want..."
         
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { (make) in

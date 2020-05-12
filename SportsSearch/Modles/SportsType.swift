@@ -15,16 +15,40 @@ enum SportsType {
     case baseball
     case tennis
     case badminton
+    case rugby
+    case volleyball
+    case tableTennis
     case others
     
     var icon: UIImage {
-        return UIImage()
+        switch self {
+        case .badminton:
+            return #imageLiteral(resourceName: "badminton")
+        case .basketball:
+            return #imageLiteral(resourceName: "basketball")
+        case .football:
+            return #imageLiteral(resourceName: "soccer ball")
+        case .tennis:
+            return #imageLiteral(resourceName: "tennis")
+        case .rugby:
+            return #imageLiteral(resourceName: "rugby")
+        case .volleyball:
+            return #imageLiteral(resourceName: "volleyball")
+        case .tableTennis:
+            return #imageLiteral(resourceName: "table tennis")
+        default:
+            return #imageLiteral(resourceName: "sportsOther")
+        }
     }
     
     var headerPlaceholder: UIImage {
         switch self {
         case .tennis, .badminton:
             return #imageLiteral(resourceName: "netHeader")
+        case .football:
+            return #imageLiteral(resourceName: "footballHeader")
+        case .rugby:
+            return #imageLiteral(resourceName: "rugbyHeader")
         default:
             return #imageLiteral(resourceName: "basketballHeader")
         }
@@ -32,21 +56,33 @@ enum SportsType {
     
     static func make(with text: String?) -> SportsType {
         guard let text = text else { return .others }
-        
-        if (text.contains("basketball")) {
+
+        if (text.localizedCaseInsensitiveContains("basketball")) {
             return .basketball
         }
         
-        if (text.contains("football") || text.contains("soccer")) {
+        if (text.localizedCaseInsensitiveContains("football") || text.localizedCaseInsensitiveContains("soccer")) {
             return .football
         }
         
-        if (text.contains("tennis")) {
+        if (text.localizedCaseInsensitiveContains("tennis")) {
             return .tennis
         }
         
-        if (text.contains("badminton")) {
+        if (text.localizedCaseInsensitiveContains("badminton")) {
             return .badminton
+        }
+        
+        if (text.localizedCaseInsensitiveContains("rugby")) {
+            return .rugby
+        }
+        
+        if (text.localizedCaseInsensitiveContains("volleyball")) {
+            return .volleyball
+        }
+        
+        if (text.localizedCaseInsensitiveContains("table") && text.localizedCaseInsensitiveContains("tennis")) {
+            return .tableTennis
         }
         
         return .others

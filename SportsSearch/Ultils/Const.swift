@@ -21,3 +21,9 @@ struct Const {
     
     static let jpushKey = "41aed45484797ef7ce6103f6"
 }
+
+struct PathConst {
+    static let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                             .userDomainMask, true)[0]
+    static let dbPath = "/db.sqlite3"
+}

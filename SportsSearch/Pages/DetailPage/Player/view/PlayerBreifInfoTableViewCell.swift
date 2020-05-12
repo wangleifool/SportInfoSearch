@@ -15,7 +15,7 @@ class PlayerBreifInfoTableViewCell: BaseTableViewCell {
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var starBtn: UIButton!
     @IBOutlet weak var playerNameLbl: UILabel!
-    @IBOutlet weak var sportsTypeLbl: UILabel!
+    @IBOutlet weak var sportsTypeImgView: UIImageView!
     @IBOutlet weak var countryLbl: UILabel!
     @IBOutlet weak var ageLbl: UILabel!
     
@@ -31,6 +31,7 @@ class PlayerBreifInfoTableViewCell: BaseTableViewCell {
     }
     
     func updateCell(_ player: Player, isStarred: Bool = false) {
+        avatarImgView.SCCornerRadius = 8
         if let thumb = player.strThumb,
             let thumbUrl = URL(string: thumb) {
             avatarImgView.isHidden = false
@@ -46,9 +47,7 @@ class PlayerBreifInfoTableViewCell: BaseTableViewCell {
         ageLbl.isHidden = ageLbl.text == nil
         countryLbl.text = player.strNationality
         countryLbl.isHidden = countryLbl.text == nil
-        sportsTypeLbl.text = player.strSport
-        sportsTypeLbl.isHidden = sportsTypeLbl.text == nil
-        
+        sportsTypeImgView.image = SportsType.make(with: player.strSport).icon
         starBtn.setImage(isStarred ? #imageLiteral(resourceName: "starFill") : #imageLiteral(resourceName: "starEmpty"), for: .normal)
     }
     

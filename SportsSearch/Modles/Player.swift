@@ -192,5 +192,67 @@ struct Player : Codable {
 		strYoutube = try values.decodeIfPresent(String.self, forKey: .strYoutube)
 	}
 
+    init(name: String?,
+         location: String?,
+         sports: String?,
+         coutry: String?,
+         number: String?,
+         description: String?,
+         thumbUrl: String?,
+         bannerUrl: String?,
+         photos: String?,
+         facebook: String?,
+         twitter: String?,
+         instagram: String?) {
+        
+    
+        strBanner = bannerUrl
+        strBirthLocation = location
+        strDescriptionEN = description
+        strFacebook = facebook
+        
+        let photosArray = Player.unarchiveStringToImages(photos)
+        strFanart1 = photosArray.
+        case strFanart2 = "strFanart2"
+        case strFanart3 = "strFanart3"
+        case strFanart4 = "strFanart4"
+        case strGender = "strGender"
+        case strHeight = "strHeight"
+        case strInstagram = "strInstagram"
+        case strKit = "strKit"
+        case strLocked = "strLocked"
+        case strNationality = "strNationality"
+        case strNumber = "strNumber"
+        case strOutfitter = "strOutfitter"
+        case strPlayer = "strPlayer"
+        case strPosition = "strPosition"
+        case strRender = "strRender"
+        case strSide = "strSide"
+        case strSigning = "strSigning"
+        case strSport = "strSport"
+        case strTeam = "strTeam"
+        case strTeam2 = "strTeam2"
+        case strThumb = "strThumb"
+        case strTwitter = "strTwitter"
+        case strWage = "strWage"
+        case strWebsite = "strWebsite"
+        case strWeight = "strWeight"
+        case strYoutube = "strYoutube"
+    }
+}
 
+extension Player {
+    func archiveImagesToString() -> String? {
+        return [strFanart1, strFanart2, strFanart3, strFanart4]
+            .compactMap { $0 }
+            .joined(separator: "{}")
+    }
+
+    static func unarchiveStringToImages(_ imageString: String?) -> [String] {
+        guard let imageStr = imageString else {
+            return []
+        }
+        return imageStr.components(separatedBy: "{}")
+            .compactMap { $0 }
+    }
 }
