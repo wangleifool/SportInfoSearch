@@ -13,6 +13,7 @@ class PlayerDetailViewController: BaseViewController {
     
     private var player: Player!
     private var dataSource: [PlayerDetailSectionModel] = []
+    private var isStared: Bool = false
     
     var sportsType: SportsType {
         return SportsType.make(with: player.strSport)
@@ -40,9 +41,10 @@ class PlayerDetailViewController: BaseViewController {
     }
     
     // MARK: - life cycle
-    static func instance(player: Player) -> PlayerDetailViewController {
+    static func instance(player: Player, isStarred: Bool) -> PlayerDetailViewController {
         let vc = PlayerDetailViewController()
         vc.player = player
+        vc.isStared = isStarred
         return vc
     }
     
@@ -84,6 +86,7 @@ class PlayerDetailViewController: BaseViewController {
     }
 
     @IBAction func backTapped() {
+        isStared ? DBService.shared.insertPlayer(player) : DBService.shared.deletePlayer(with: player.strPlayer ?? "")
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -127,11 +130,12 @@ extension PlayerDetailViewController: UITableViewDataSource {
         switch element {
         case .breifInfo(let playerInfo):
             let cell = tableView.dequeueReusableCell(PlayerBreifInfoTableViewCell.self, for: indexPath)
-            cell.updateCell(playerInfo)
+            cell.updateCell(playerInfo, isStarred: isStared)
             cell.selectionStyle = .none
             cell.starBtnTapped
-                .drive(onNext: { _ in
-                    
+                .drive(onNext: { [weak self] _ in
+                    self?.isStared.toggle()
+                    self?.tableView.reloadData()
                 })
                 .disposed(by: disposeBag)
             return cell

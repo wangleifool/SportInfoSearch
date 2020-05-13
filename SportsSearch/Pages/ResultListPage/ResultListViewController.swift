@@ -7,26 +7,95 @@
 //
 
 import UIKit
+import SABlurImageView
 
 class ResultListViewController: BaseViewController {
 
-    var playerResult: PlayerResult?
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.tableFooterView = UIView()
+            tableView.register(PlayerBreifInfoTableViewCell.self)
+        }
+    }
+    
+    @IBOutlet weak var bgImgView: SABlurImageView! {
+        didSet {
+            self.bgImgView.configrationForBlurAnimation()
+            self.bgImgView.blur(1)
+        }
+    }
+    
+    private var isShowStarPlayer: Bool = false
+    private var players: [Player] = []
+    
+    static func instance(with players: [Player], showStarPlayer: Bool = false) -> ResultListViewController {
+        let vc = ResultListViewController()
+        vc.players = players
+        vc.isShowStarPlayer = showStarPlayer
+        return vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (isShowStarPlayer) {
+            players = DBService.shared.getPlayer()
+            tableView.reloadData()
+        }
     }
-    */
+    
+    private func unstarPlayer(with indexPath: IndexPath) {
+        guard let player = players.safeElement(indexPath.row) else { return }
+        DBService.shared.deletePlayer(with: player.strPlayer ?? "")
+        players = DBService.shared.getPlayer()
+        tableView.deleteRows(at: [indexPath], with: .left)
+    }
+    
+    @IBAction func backBtnTap(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+}
 
+extension ResultListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return players.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let player = players.safeElement(indexPath.row) else {
+            return UITableViewCell()
+        }
+        let cell = tableView.dequeueReusableCell(PlayerBreifInfoTableViewCell.self, for: indexPath)
+        cell.updateCell(player, isStarred: isShowStarPlayer)
+        
+        cell.starBtnTapped
+            .drive(onNext: { [weak self] _ in
+                self?.unstarPlayer(with: indexPath)
+            })
+            .disposed(by: cell.disposeBag)
+        
+        return cell
+    }
+    
+    
+}
+
+extension ResultListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let player = players.safeElement(indexPath.row) else { return }
+        let isStarred = DBService.shared.getPlayer(with: player.strPlayer ?? "").count > 0
+        let playerDetailPage = PlayerDetailViewController.instance(player: player, isStarred: isStarred)
+        navigationController?.pushViewController(playerDetailPage, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
 }

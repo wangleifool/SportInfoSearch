@@ -93,7 +93,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="gGy-ui-iEG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="EqA-QC-lsg"/>
                     <constraint firstItem="gGy-ui-iEG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="IeN-a4-MVb"/>
@@ -101,6 +101,7 @@
                     <constraint firstAttribute="bottom" secondItem="gGy-ui-iEG" secondAttribute="bottom" constant="16" id="mka-6g-m5J"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ageLbl" destination="vgz-J0-nvm" id="RU7-jS-JUC"/>

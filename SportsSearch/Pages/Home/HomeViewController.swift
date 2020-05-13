@@ -118,6 +118,11 @@ class HomeViewController: BaseViewController {
             make.height.equalTo(44)
         }
     }
+    
+    @IBAction func starBtnTap(_ sender: Any) {
+        let vc = ResultListViewController.instance(with: [], showStarPlayer: true)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension HomeViewController: SHSearchBarDelegate {
@@ -179,7 +184,8 @@ extension HomeViewController: ReactorKit.View {
     }
     
     func gotoSearchPlayerResultPage(with player: Player) {
-        let playerPage = PlayerDetailViewController.instance(player: player)
+        let isStarred = DBService.shared.getPlayer(with: player.strPlayer ?? "").count > 0
+        let playerPage = PlayerDetailViewController.instance(player: player, isStarred: isStarred)
         navigationController?.pushViewController(playerPage, animated: true)
     }
 }

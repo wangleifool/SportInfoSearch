@@ -206,38 +206,70 @@ struct Player : Codable {
          instagram: String?) {
         
     
-        strBanner = bannerUrl
-        strBirthLocation = location
-        strDescriptionEN = description
-        strFacebook = facebook
+        self.strBanner = bannerUrl
+        self.strBirthLocation = location
+        self.strDescriptionEN = description
+        self.strFacebook = facebook
         
         let photosArray = Player.unarchiveStringToImages(photos)
-        strFanart1 = photosArray.
-        case strFanart2 = "strFanart2"
-        case strFanart3 = "strFanart3"
-        case strFanart4 = "strFanart4"
-        case strGender = "strGender"
-        case strHeight = "strHeight"
-        case strInstagram = "strInstagram"
-        case strKit = "strKit"
-        case strLocked = "strLocked"
-        case strNationality = "strNationality"
-        case strNumber = "strNumber"
-        case strOutfitter = "strOutfitter"
-        case strPlayer = "strPlayer"
-        case strPosition = "strPosition"
-        case strRender = "strRender"
-        case strSide = "strSide"
-        case strSigning = "strSigning"
-        case strSport = "strSport"
-        case strTeam = "strTeam"
-        case strTeam2 = "strTeam2"
-        case strThumb = "strThumb"
-        case strTwitter = "strTwitter"
-        case strWage = "strWage"
-        case strWebsite = "strWebsite"
-        case strWeight = "strWeight"
-        case strYoutube = "strYoutube"
+        self.strFanart1 = photosArray.safeElement(0)
+        self.strFanart2 = photosArray.safeElement(1)
+        self.strFanart3 = photosArray.safeElement(2)
+        self.strFanart4 = photosArray.safeElement(3)
+        
+        
+        self.strInstagram = instagram
+        self.strNationality = coutry
+        self.strNumber = number
+        self.strPlayer = name
+        self.strSport = sports
+        self.strThumb = thumbUrl
+        self.strTwitter = twitter
+        
+        dateBorn = nil
+        dateSigned = nil
+        idAPIfootball = nil
+        idPlayer = nil
+        idPlayerManager = nil
+        idSoccerXML = nil
+        idTeam = nil
+        idTeam2 = nil
+        idTeamNational = nil
+        intLoved = nil
+        intSoccerXMLTeamID = nil
+        strAgent = nil
+        strCollege = nil
+        strCreativeCommons = nil
+        strCutout = nil
+        strDescriptionCN = nil
+        strDescriptionDE = nil
+        strDescriptionES = nil
+        strDescriptionFR = nil
+        strDescriptionHU = nil
+        strDescriptionIL = nil
+        strDescriptionIT = nil
+        strDescriptionJP = nil
+        strDescriptionNL = nil
+        strDescriptionNO = nil
+        strDescriptionPL = nil
+        strDescriptionPT = nil
+        strDescriptionRU = nil
+        strDescriptionSE = nil
+        strGender = nil
+        strHeight = nil
+        strKit = nil
+        strLocked = nil
+        strOutfitter = nil
+        strPosition = nil
+        strRender = nil
+        strSide = nil
+        strSigning = nil
+        strTeam = nil
+        strTeam2 = nil
+        strWage = nil
+        strWebsite = nil
+        strWeight = nil
+        strYoutube = nil
     }
 }
 

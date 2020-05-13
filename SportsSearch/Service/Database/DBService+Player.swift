@@ -30,46 +30,42 @@ extension DBService {
             print("FlyerDetail insert fail \(error)")
         }
     }
-
-    func getPlayer(with name: String) -> Player? {
-        let query = StarPlayerTB.table.filter(StarPlayerTB.name == name)
-        do {
-            guard let queryResult = try db?.prepare(query) else { return nil }
-            var player = Player()
-            player.na
-        } catch {
-            print("get FlyerDetail fail \(error)")
-        }
-        return nil
-    }
     
-    func getFlyerDetail(id: Int?) -> FlyerDetailModel? {
-        guard let flyerID = id else {
-            return nil
-        }
-        let queryFlyer = FlyersDetailTB.table.filter(FlyersDetailTB.flyerID == flyerID)
+    func deletePlayer(with name: String) {
+        let deletePlayer = StarPlayerTB.table.filter(StarPlayerTB.name == name)
         do {
-            guard let queryResult = try db?.prepare(queryFlyer) else {
-                return nil
-            }
-            let result = queryResult.compactMap { (row) -> FlyerDetailModel in
-                let images = FlyerDetailModel.unarchiveStringToImages(row[FlyersDetailTB.images])
-                return FlyerDetailModel(id: row[FlyersDetailTB.flyerID],
-                                        shopCode: row[FlyersDetailTB.shopCode],
-                                        shopName: row[FlyersDetailTB.shopName],
-                                        periodFrom: row[FlyersDetailTB.periodFrom],
-                                        periodTo: row[FlyersDetailTB.periodTo],
-                                        lastUpdate: row[FlyersDetailTB.lastUpdate],
-                                        title: row[FlyersDetailTB.title],
-                                        body: row[FlyersDetailTB.body],
-                                        images: images)
-            }
-            return result.first
-
+            try db?.run(deletePlayer.delete())
         } catch {
-            print("get FlyerDetail fail \(error)")
+            print("delete player fail \(error)")
         }
-        return nil
+    }
+
+    func getPlayer(with name: String? = nil) -> [Player] {
+        var query = StarPlayerTB.table
+        if let playerName = name {
+            query = query.filter(StarPlayerTB.name == playerName)
+        }
+        do {
+            guard let queryResult = try db?.prepare(query) else { return [] }
+            let result = queryResult.compactMap { (row) -> Player? in
+                return Player(name: row[StarPlayerTB.name],
+                              location: row[StarPlayerTB.location],
+                              sports: row[StarPlayerTB.sports],
+                              coutry: row[StarPlayerTB.country],
+                              number: row[StarPlayerTB.number],
+                              description: row[StarPlayerTB.description],
+                              thumbUrl: row[StarPlayerTB.thumbUrl],
+                              bannerUrl: row[StarPlayerTB.bannerUrl],
+                              photos: row[StarPlayerTB.photos],
+                              facebook: row[StarPlayerTB.facebook],
+                              twitter: row[StarPlayerTB.twitter],
+                              instagram: row[StarPlayerTB.instagram])
+            }
+            return result
+        } catch {
+            print("get player fail \(error)")
+        }
+        return []
     }
 }
 

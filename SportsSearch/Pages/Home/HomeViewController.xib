@@ -41,6 +41,23 @@
                         <action selector="searchBtnTap:" destination="-1" eventType="touchUpInside" id="9Og-Hs-8qa"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIX-oo-5Ul">
+                    <rect key="frame" x="318" y="634" width="64" height="64"/>
+                    <color key="backgroundColor" red="0.95221644640000003" green="0.49537813660000002" blue="0.43827116490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="07h-TS-yPr"/>
+                        <constraint firstAttribute="width" constant="64" id="nv3-gg-zc0"/>
+                    </constraints>
+                    <state key="normal" image="starFill"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="SCCornerRadius">
+                            <real key="value" value="32"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="starBtnTap:" destination="-1" eventType="touchUpInside" id="soV-HY-23g"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -49,6 +66,8 @@
                 <constraint firstItem="TtX-q9-TKM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="KRK-0D-RvR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TtX-q9-TKM" secondAttribute="bottom" constant="44" id="TZt-pB-XOr"/>
                 <constraint firstItem="PPM-TQ-Ge7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UzO-WJ-UeT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vIX-oo-5Ul" secondAttribute="bottom" constant="164" id="V6M-bS-Cn2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vIX-oo-5Ul" secondAttribute="trailing" constant="32" id="hzm-O0-K6Y"/>
                 <constraint firstAttribute="trailing" secondItem="PPM-TQ-Ge7" secondAttribute="trailing" id="o9b-sd-UnB"/>
                 <constraint firstAttribute="bottom" secondItem="PPM-TQ-Ge7" secondAttribute="bottom" id="yoz-MJ-IQB"/>
             </constraints>
@@ -58,5 +77,6 @@
     </objects>
     <resources>
         <image name="background" width="938" height="1500"/>
+        <image name="starFill" width="21.333333969116211" height="21.333333969116211"/>
     </resources>
 </document>
