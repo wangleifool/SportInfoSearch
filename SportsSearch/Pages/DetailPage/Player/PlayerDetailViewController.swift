@@ -169,6 +169,7 @@ extension PlayerDetailViewController: UITableViewDataSource {
             return cell
         case .desc(let text, _):
             let cell = tableView.dequeueReusableCell(PlayerDescTableViewCell.self, for: indexPath)
+            cell.selectionStyle = .none
             cell.updateCell(with: text)
             return cell
         case .photos(let photoUrls):

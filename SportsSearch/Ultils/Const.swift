@@ -17,9 +17,9 @@ struct Const {
     static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
     static let navBarAndStatusBarHeight: CGFloat = navigationBarHeight + statusBarHeight
     
-    static let appID = "1505075520"
+    static let appID = "1513185447"
     
-    static let jpushKey = "41aed45484797ef7ce6103f6"
+    static let jpushKey = "d861271beca80051aa5ba71e"
 }
 
 struct PathConst {

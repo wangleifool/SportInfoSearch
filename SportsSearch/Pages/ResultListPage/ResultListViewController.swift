@@ -45,8 +45,8 @@ class ResultListViewController: BaseViewController {
         
         if (isShowStarPlayer) {
             players = DBService.shared.getPlayer()
-            tableView.reloadData()
         }
+        tableView.reloadData()
     }
     
     private func unstarPlayer(with indexPath: IndexPath) {
@@ -72,11 +72,18 @@ extension ResultListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let cell = tableView.dequeueReusableCell(PlayerBreifInfoTableViewCell.self, for: indexPath)
-        cell.updateCell(player, isStarred: isShowStarPlayer)
+        cell.selectionStyle = .none
+        var isStar = isShowStarPlayer
+        if (!isShowStarPlayer) {
+            isStar = DBService.shared.getPlayer(with: player.strPlayer).count == 1
+        }
+        cell.updateCell(player, isStarred: isStar)
         
         cell.starBtnTapped
             .drive(onNext: { [weak self] _ in
-                self?.unstarPlayer(with: indexPath)
+                if (self?.isShowStarPlayer ?? false) {
+                    self?.unstarPlayer(with: indexPath)
+                }
             })
             .disposed(by: cell.disposeBag)
         

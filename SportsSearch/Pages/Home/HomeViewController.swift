@@ -158,13 +158,13 @@ extension HomeViewController: ReactorKit.View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.playerResult?.player?.first }
+            .map { $0.playerResult?.player ?? [] }
             .distinctUntilChanged { (leftPlayer, rightPlayer) -> Bool in
-                return leftPlayer?.idPlayer == rightPlayer?.idPlayer
+                return leftPlayer?.first?.idPlayer == rightPlayer?.first?.idPlayer
             }
-            .filter { $0 != nil }
-            .subscribe(onNext: { [weak self] (player) in
-                self?.gotoSearchPlayerResultPage(with: player!)
+            .filter { $0?.count != 0 }
+            .subscribe(onNext: { [weak self] (players) in
+                self?.gotoSearchPlayerResultPage(with: players!)
             })
             .disposed(by: disposeBag)
         
@@ -183,10 +183,9 @@ extension HomeViewController: ReactorKit.View {
         navigationController?.pushViewController(detailPage, animated: true)
     }
     
-    func gotoSearchPlayerResultPage(with player: Player) {
-        let isStarred = DBService.shared.getPlayer(with: player.strPlayer ?? "").count > 0
-        let playerPage = PlayerDetailViewController.instance(player: player, isStarred: isStarred)
-        navigationController?.pushViewController(playerPage, animated: true)
+    func gotoSearchPlayerResultPage(with players: [Player]) {
+        let vc = ResultListViewController.instance(with: players, showStarPlayer: false)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

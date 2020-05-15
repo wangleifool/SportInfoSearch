@@ -21,7 +21,7 @@ extension APITarget: TargetType {
         var urlString: String
         switch self {
         case .appVersion:
-            urlString = "https://materCup.github.io"
+            urlString = "https://zuigaokexiangshou.github.io"
         case .player, .team:
             urlString = "https://www.thesportsdb.com"
         }
@@ -35,7 +35,7 @@ extension APITarget: TargetType {
     var path: String {
         switch self {
         case .appVersion:
-            return "/appVersion.json"
+            return "/AppInfo.json"
         case .player:
             return "/api/v1/json/1/searchplayers.php"
         case .team:
@@ -55,12 +55,12 @@ extension APITarget: TargetType {
         var parameters: [String: Any] = [:]
         
         switch self {
-        case .appVersion:
-            parameters["id"] = "TestJump"
         case .player(let searchText):
             parameters["p"] = searchText
         case .team(let searchText):
             parameters["t"] = searchText
+        case .appVersion:
+            break
         }
         
         return Task.requestParameters(parameters: parameters,
